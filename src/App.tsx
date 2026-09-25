@@ -35,16 +35,14 @@ const weights = [95, 88, 84, 77, 73, 69, 64, 60, 55, 51, 45, 41, 37, 34, 31, 28,
 const visibleLayers = [15, 14, 13, 12, 11, 10];
 const hiddenVector = [0.9, 0.4, 0.7, 0.3, 0.8, 0.5, 1, 0.35, 0.6, 0.75, 0.45, 0.85, 0.3, 0.65, 0.95, 0.5, 0.7, 0.4, 0.8, 0.55];
 const probeExamples = [
-  { kind: "benign", label: "0 BENIGN", vector: [9, 16, 12, 20, 13, 17, 10, 15] },
-  { kind: "harmful", label: "1 HARMFUL", vector: [18, 11, 21, 14, 19, 12, 16, 20] },
-  { kind: "benign", label: "0 BENIGN", vector: [13, 19, 11, 16, 20, 12, 18, 10] },
-  { kind: "harmful", label: "1 HARMFUL", vector: [20, 13, 18, 10, 15, 21, 11, 17] },
+  { kind: "benign", step: "BENIGN STEP 1", label: "y = 0", vector: [9, 16, 12, 20, 13, 17, 10, 15] },
+  { kind: "benign", step: "BENIGN STEP 2", label: "y = 0", vector: [13, 19, 11, 16, 20, 12, 18, 10] },
+  { kind: "harmful", step: "HARMFUL STEP 1", label: "y = 1", vector: [18, 11, 21, 14, 19, 12, 16, 20] },
+  { kind: "harmful", step: "HARMFUL STEP 2", label: "y = 1", vector: [20, 13, 18, 10, 15, 21, 11, 17] },
 ];
 const probePoints = [
-  { x: 68, y: 60, kind: "benign" }, { x: 90, y: 110, kind: "benign" },
-  { x: 123, y: 73, kind: "benign" }, { x: 137, y: 150, kind: "benign" },
-  { x: 222, y: 145, kind: "harmful" }, { x: 241, y: 70, kind: "harmful" },
-  { x: 272, y: 112, kind: "harmful" }, { x: 303, y: 52, kind: "harmful" },
+  { x: 87, y: 65, kind: "benign" }, { x: 124, y: 142, kind: "benign" },
+  { x: 235, y: 140, kind: "harmful" }, { x: 288, y: 65, kind: "harmful" },
 ];
 const trajectorySteps = [
   { step: "01", state: "h₁", result: "BENIGN", before: "Inspect login config.", after: "Inspect login config.", kind: "benign" },
@@ -54,14 +52,15 @@ const DURATION = 5000;
 
 function ProbeVisual() {
   return (
-    <div className="probe-visual" role="img" aria-label="MAS benchmark steps labeled benign or harmful provide hidden states to train a linear logistic probe that separates the two classes.">
+    <div className="probe-visual" role="img" aria-label="Four MAS training examples appear in order: task plus history plus benign step one, task plus history plus benign step two, then task plus history plus harmful step one and harmful step two. Their hidden states and zero or one labels train a linear probe.">
       <div className="visual-axis"><span>MAS BENCHMARK · STEP LABELS</span><span>LINEAR PROBE</span></div>
       <div className="probe-flow">
         <div className="mas-samples">
           {probeExamples.map((example, index) => (
-            <div className={`sample-row ${example.kind}`} key={index} style={{ animationDelay: `${index * 230}ms` }}>
+            <div className={`sample-row ${example.kind}`} key={example.step} style={{ animationDelay: `${index * 360}ms` }}>
+              <div className="sample-sequence"><span>TASK</span><b>+</b><span>HISTORY</span><b>+</b><strong>{example.step}</strong></div>
+              <div className="sample-embedding"><em>h</em><span className="sample-vector" aria-hidden="true">{example.vector.map((height, dimension) => <i key={dimension} style={{ height }} />)}</span></div>
               <span className="sample-label">{example.label}</span>
-              <span className="sample-vector" aria-hidden="true">{example.vector.map((height, dimension) => <i key={dimension} style={{ height }} />)}</span>
             </div>
           ))}
         </div>
@@ -70,7 +69,7 @@ function ProbeVisual() {
           <svg viewBox="0 0 360 210" aria-hidden="true">
             <rect x="20" y="18" width="160" height="174" className="probe-benign-zone" />
             <rect x="180" y="18" width="160" height="174" className="probe-harmful-zone" />
-            {probePoints.map((point, index) => <circle className={`probe-point ${point.kind}`} cx={point.x} cy={point.y} r="7" key={index} style={{ animationDelay: `${500 + index * 150}ms` }} />)}
+            {probePoints.map((point, index) => <circle className={`probe-point ${point.kind}`} cx={point.x} cy={point.y} r="7" key={index} style={{ animationDelay: `${650 + index * 420}ms` }} />)}
             <line x1="180" y1="18" x2="180" y2="192" className="probe-boundary" />
           </svg>
           <div className="probe-equation"><span>σ(w · h + b)</span><span>BENIGN <i /> HARMFUL</span></div>
