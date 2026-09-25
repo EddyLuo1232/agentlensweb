@@ -33,8 +33,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .hero-links a:hover, .footer a:hover { color: #23704a; }
 .hero { padding-top: 68px; padding-bottom: 76px; text-align: center; }
 .hero-venue { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 22px; padding: 5px 11px 5px 7px; border: 1px solid #d9dcda; background: #fff; color: #303431; font: 600 12px var(--font-sans); letter-spacing: .02em; }
-.hero-venue-mark { display: block; width: 26px; height: 27px; flex: none; overflow: hidden; }
-.hero-venue-mark img { display: block; width: 60px; height: 27px; max-width: none; }
+.hero-venue-mark { display: block; width: 74px; flex: none; }
+.hero-venue-mark img { display: block; width: 100%; height: auto; }
 .hero h1 { margin: 0; font-weight: 600; }
 .hero-name { display: flex; align-items: center; justify-content: center; gap: .12em; font-size: clamp(66px, 9vw, 112px); line-height: 1; letter-spacing: -.085em; }
 .hero-icon { width: .68em; height: .68em; flex: none; color: #3f8b5b; stroke-width: 1.8; }
