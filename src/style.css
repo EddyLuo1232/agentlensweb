@@ -60,8 +60,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .motion-stage { border: 1px solid #bfc8be; background: #fff; }
 .stage-top { display: flex; justify-content: space-between; gap: 15px; padding: 20px 31px 0; color: #7b8980; font: 600 11px var(--font-mono); letter-spacing: .08em; }
 .stage-group { color: #43855a; }
-.stage-title { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin: 14px 31px 0; min-height: 61px; animation: reveal .45s both; }
-.stage-title h3 { margin: 0; font-size: clamp(33px, 3.9vw, 52px); font-weight: 550; letter-spacing: -.07em; line-height: 1.06; }
+.stage-title { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin: 14px 31px 0; min-height: 52px; animation: reveal .45s both; }
+.stage-title h3 { margin: 0; font-size: clamp(30px, 3.3vw, 44px); font-weight: 550; letter-spacing: -.055em; line-height: 1.12; }
 .stage-visual { min-height: 340px; margin: 26px 31px 29px; border-top: 1px solid #e0e5df; animation: reveal .55s both; }
 .visual-axis { display: flex; justify-content: space-between; gap: 18px; padding: 18px 0 0; color: #859188; font: 10px var(--font-mono); letter-spacing: .08em; }
 .probe-visual, .transformer-visual, .detection-visual, .weight-visual, .tune-visual, .multi-visual { max-width: 910px; margin: auto; }
@@ -247,9 +247,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .case-strip { grid-template-columns: 1fr; gap: 4px; min-height: 82px; padding: 13px 16px; }
   .case-strip strong { font-size: 14px; }
   .stage-top { padding: 18px 17px 0; font-size: 9px; }
-  .stage-title { margin: 18px 17px 0; }
-  .stage-title h3 { font-size: 36px; }
-  .stage-visual { min-height: 310px; margin: 18px 17px 22px; }
+  .stage-title { min-height: 0; margin: 16px 17px 0; }
+  .stage-title h3 { font-size: clamp(25px, 7.4vw, 30px); letter-spacing: -.045em; line-height: 1.16; }
+  .stage-visual { min-height: 310px; margin: 17px 17px 22px; }
   .visual-axis { font-size: 8px; }
   .transformer-visual { min-height: 300px; gap: 10px; justify-content: space-between; }
   .transformer-stack { width: 52%; flex: 0 0 52%; }
