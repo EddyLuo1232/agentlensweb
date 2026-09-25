@@ -204,12 +204,30 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .wrap { width: min(100% - 56px, 1180px); }
   .stage-title { display: block; }
   .hero-authors { grid-template-columns: repeat(2, max-content); }
+  .player { display: grid; gap: 14px; }
+  .player-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 12px; }
+  .step { min-height: 46px; }
+  .step-text { font-size: 12px; }
+  .player-actions { justify-self: end; gap: 8px; }
+  .player-button { width: 40px; height: 40px; }
+}
+@media (max-width: 720px) and (min-width: 621px) {
+  .probe-flow { min-height: 0; grid-template-columns: 1fr; gap: 10px; padding-top: 18px; }
+  .probe-flow-arrow { animation: none; transform: rotate(90deg); font-size: 24px; line-height: 1; }
+  .probe-model { width: min(100%, 350px); justify-self: center; }
+  .probe-model svg { max-height: 180px; }
+  .transformer-visual { gap: 22px; }
+  .transformer-stack { width: 52%; flex: 0 0 52%; }
+  .hidden-output { min-width: 0; flex: 1; padding-left: 12px; }
+  .output-connector { left: -22px; width: 25px; }
+  .tune-layout { gap: 24px; }
 }
 @media (max-width: 620px) {
   .wrap { width: calc(100% - 36px); }
-  .hero { padding-top: 54px; padding-bottom: 61px; }
+  .hero { padding-top: 54px; padding-bottom: 50px; }
   .hero-venue { margin-bottom: 19px; }
-  .hero-name { font-size: clamp(58px, 14vw, 76px); }
+  .hero-name { gap: .08em; font-size: clamp(58px, 14vw, 76px); }
+  .hero-icon { width: .58em; height: .58em; }
   .hero-paper-title { margin-top: 14px; font-size: clamp(23px, 6vw, 29px); line-height: 1.2; }
   .hero-authors { gap: 9px 19px; margin-top: 31px; }
   .hero-authors li { font-size: 13px; }
@@ -259,8 +277,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .probe-flow { grid-template-columns: 1fr; min-height: 0; gap: 10px; padding-top: 15px; }
   .mas-samples { grid-template-columns: 1fr; gap: 6px; }
   .sample-row { min-height: 56px; gap: 2px 8px; padding: 7px 9px; }
-  .sample-sequence { gap: 4px; font-size: 8px; }
-  .sample-label { font-size: 8px; }
+  .sample-sequence { gap: 4px; font-size: 9px; }
+  .sample-label { font-size: 9px; }
   .sample-vector { height: 18px; gap: 2px; }
   .sample-vector i { width: 4px; }
   .probe-flow-arrow { animation: none; transform: rotate(90deg); font-size: 24px; line-height: 1; }
@@ -275,15 +293,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .trajectory-result { font-size: 9px; }
   .trajectory-action-row { min-height: 30px; grid-template-columns: 42px minmax(0, 1fr); padding-top: 6px; }
   .trajectory-action-row strong { font-size: 11px; }
-  .player { gap: 8px; }
-  .player-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 5px; }
-  .step-text { display: block; font-size: 10px; line-height: 1.4; }
-  .step-text b { display: block; margin-bottom: 4px; }
-  .player-actions { gap: 2px; }
-  .player-button { width: 29px; height: 29px; }
-  .player-button svg { width: 14px; }
-  .mechanism-section { padding-bottom: 90px; }
-  .footer { min-height: 110px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
+  .player { gap: 12px; }
+  .player-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
+  .step { min-height: 45px; }
+  .step-text { gap: 7px; font-size: 12px; line-height: 1.3; }
+  .step-text b { flex: none; }
+  .player-button { width: 44px; height: 44px; }
+  .mechanism-section { padding-bottom: 50px; }
+  .footer { min-height: 80px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
+}
+@media (max-width: 360px) {
+  .hero-name { font-size: 49px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
