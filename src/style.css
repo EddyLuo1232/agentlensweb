@@ -32,8 +32,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .wrap { width: min(1180px, calc(100% - 96px)); margin-inline: auto; }
 .hero-links a:hover, .footer a:hover { color: #23704a; }
 .hero { padding-top: 68px; padding-bottom: 76px; text-align: center; }
+.hero-venue { display: inline-block; margin: 0 0 22px; padding: 8px 13px; border: 1px solid #bbd7c2; background: #edf6ee; color: #2d7046; font: 600 11px var(--font-mono); letter-spacing: .09em; }
 .hero h1 { margin: 0; font-weight: 600; }
-.hero-name { display: block; font-size: clamp(66px, 9vw, 112px); line-height: 1; letter-spacing: -.085em; }
+.hero-name { display: flex; align-items: center; justify-content: center; gap: .12em; font-size: clamp(66px, 9vw, 112px); line-height: 1; letter-spacing: -.085em; }
+.hero-icon { width: .68em; height: .68em; flex: none; color: #3f8b5b; stroke-width: 1.8; }
 .hero-paper-title { display: block; max-width: 990px; margin: 17px auto 0; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.17; letter-spacing: -.05em; font-weight: 550; }
 .hero-authors { display: grid; grid-template-columns: repeat(4, max-content); justify-content: center; gap: 11px 27px; margin: 39px 0 0; padding: 0; list-style: none; }
 .hero-authors li { color: #223027; font-size: 16px; font-weight: 550; white-space: nowrap; }
@@ -139,6 +141,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 @media (max-width: 620px) {
   .wrap { width: calc(100% - 36px); }
   .hero { padding-top: 54px; padding-bottom: 61px; }
+  .hero-venue { margin-bottom: 19px; }
   .hero-name { font-size: clamp(58px, 14vw, 76px); }
   .hero-paper-title { margin-top: 14px; font-size: clamp(23px, 6vw, 29px); line-height: 1.2; }
   .hero-authors { gap: 9px 19px; margin-top: 31px; }

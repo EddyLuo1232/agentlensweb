@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Pause, Play, RotateCcw } from "lucide-react";
+import { ArrowUpRight, Pause, Play, RotateCcw, Search } from "lucide-react";
 
 const phases = [
   { label: "Select layer", title: "Find the hidden state" },
@@ -133,7 +133,8 @@ export default function Home() {
   return (
     <main id="top">
       <section className="hero wrap" aria-labelledby="hero-title">
-        <h1 id="hero-title"><span className="hero-name">AgentLens:</span>{" "}<span className="hero-paper-title">Interpretable Safety Steering via Mechanistic Subspaces for Multi-Turn Coding Agent</span></h1>
+        <p className="hero-venue">NeurIPS 2026</p>
+        <h1 id="hero-title"><span className="hero-name"><Search className="hero-icon" aria-hidden="true" strokeWidth={1.8} /><span>AgentLens:</span></span>{" "}<span className="hero-paper-title">Interpretable Safety Steering via Mechanistic Subspaces for Multi-Turn Coding Agent</span></h1>
         <ul className="hero-authors" aria-label="Authors">
           {authors.map((author) => <li key={author.name}>{author.name}<sup>{author.affiliation}</sup></li>)}
         </ul>
