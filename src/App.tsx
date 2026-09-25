@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Pause, Play, RotateCcw, Search } from "lucide-react";
+import { Pause, Play, RotateCcw, Search } from "lucide-react";
 
 const phases = [
   { label: "Train a probe", title: "Train a linear probe", group: "MAS · PREPARATION" },
@@ -223,7 +223,7 @@ export default function Home() {
     <main id="top">
       <section className="hero wrap" aria-labelledby="hero-title">
         <p className="hero-venue"><span className="hero-venue-mark" aria-hidden="true"><img src="/agentlensweb/neurips-logo.svg" alt="" /></span><span>NeurIPS 2026</span></p>
-        <h1 id="hero-title"><span className="hero-name"><Search className="hero-icon" aria-hidden="true" strokeWidth={1.8} /><span>AgentLens:</span></span>{" "}<span className="hero-paper-title">Interpretable Safety Steering via Mechanistic Subspaces for Multi-Turn Coding Agent</span></h1>
+        <h1 id="hero-title" aria-label="AgentLens: Interpretable Safety Steering via Mechanistic Subspaces for Multi-Turn Coding Agent"><span className="hero-name"><Search className="hero-icon" aria-hidden="true" strokeWidth={1.8} /><span className="hero-wordmark"><span className="hero-wordmark-agent">Agent</span><em>Lens:</em></span></span>{" "}<span className="hero-paper-title">Interpretable Safety Steering via Mechanistic Subspaces for Multi-Turn Coding Agent</span></h1>
         <ul className="hero-authors" aria-label="Authors">
           {authors.map((author) => <li key={author.name}>{author.name}<sup>{author.affiliation}</sup></li>)}
         </ul>
@@ -231,8 +231,8 @@ export default function Home() {
           {affiliations.map((affiliation, index) => <li key={affiliation}><sup>{index + 1}</sup>{affiliation}</li>)}
         </ol>
         <div className="hero-links">
-          <a href="https://github.com/EddyLuo1232/AgentLens" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16} /></a>
-          <a href="https://arxiv.org/pdf/2606.22673" target="_blank" rel="noreferrer">arXiv <ArrowUpRight size={16} /></a>
+          <a href="https://github.com/EddyLuo1232/AgentLens" target="_blank" rel="noreferrer"><img className="github-logo" src="/agentlensweb/github-logo.svg" alt="" aria-hidden="true" />GitHub</a>
+          <a href="https://arxiv.org/pdf/2606.22673" target="_blank" rel="noreferrer" aria-label="arXiv paper"><img className="arxiv-logo" src="/agentlensweb/arxiv-logo.svg" alt="arXiv" /></a>
         </div>
       </section>
 

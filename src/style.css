@@ -38,6 +38,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .hero h1 { margin: 0; font-weight: 600; }
 .hero-name { display: flex; align-items: center; justify-content: center; gap: .12em; font-size: clamp(66px, 9vw, 112px); line-height: 1; letter-spacing: -.085em; }
 .hero-icon { width: .68em; height: .68em; flex: none; color: #3f8b5b; stroke-width: 1.8; }
+.hero-wordmark { display: inline-flex; align-items: baseline; gap: .12em; white-space: nowrap; }
+.hero-wordmark-agent { letter-spacing: -.085em; }
+.hero-wordmark em { color: #3f8b5b; font: 600 italic .96em Georgia, "Times New Roman", serif; letter-spacing: -.075em; }
 .hero-paper-title { display: block; max-width: 990px; margin: 17px auto 0; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.17; letter-spacing: -.05em; font-weight: 550; }
 .hero-authors { display: grid; grid-template-columns: repeat(4, max-content); justify-content: center; gap: 11px 27px; margin: 39px 0 0; padding: 0; list-style: none; }
 .hero-authors li { color: #223027; font-size: 16px; font-weight: 550; white-space: nowrap; }
@@ -45,9 +48,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .hero-affiliations { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 21px; max-width: 920px; margin: 23px auto 0; padding: 0; list-style: none; }
 .hero-affiliations li { color: #78867b; font-size: 13px; line-height: 1.4; white-space: nowrap; }
 .hero-affiliations sup { margin-right: 5px; color: #4c8d62; font: 600 9px var(--font-mono); vertical-align: super; }
-.hero-links { display: flex; justify-content: center; gap: 10px; margin-top: 32px; }
-.hero-links a { min-width: 133px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 19px; border: 1px solid #bfcbbf; color: #26392b; font-size: 14px; font-weight: 600; transition: color .2s, border-color .2s, background .2s; }
-.hero-links a:hover { border-color: #5f9d72; background: #f0f7f1; }
+.hero-links { display: flex; justify-content: center; align-items: center; gap: 24px; margin-top: 32px; }
+.hero-links a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; color: #26392b; font-size: 14px; font-weight: 600; transition: color .2s, opacity .2s; }
+.hero-links a:hover { color: #23704a; opacity: .76; }
+.github-logo { display: block; width: 21px; height: 21px; }
+.arxiv-logo { display: block; width: 67px; height: auto; }
 .mechanism-section { padding-bottom: 90px; }
 .case-strip { min-height: 70px; display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 24px; padding: 0 24px; border: 1px solid #c6cec5; border-bottom: 0; background: #fff; }
 .case-strip > span:first-child { color: #748278; font: 600 10px var(--font-mono); letter-spacing: .08em; }
@@ -235,8 +240,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .hero-authors li { font-size: 13px; }
   .hero-affiliations { gap: 7px 13px; margin-top: 19px; }
   .hero-affiliations li { font-size: 11px; white-space: normal; }
-  .hero-links { margin-top: 27px; }
-  .hero-links a { min-width: 116px; padding: 11px 15px; font-size: 13px; }
+  .hero-links { gap: 17px; margin-top: 27px; }
+  .hero-links a { padding: 6px; font-size: 13px; }
+  .github-logo { width: 20px; height: 20px; }
+  .arxiv-logo { width: 62px; }
   .case-strip { grid-template-columns: 1fr; gap: 4px; min-height: 82px; padding: 13px 16px; }
   .case-strip strong { font-size: 14px; }
   .stage-top { padding: 18px 17px 0; font-size: 9px; }
