@@ -48,8 +48,7 @@ const probePoints = [
 ];
 const trajectorySteps = [
   { step: "01", state: "h₁", result: "BENIGN", before: "Inspect login config.", after: "Inspect login config.", kind: "benign" },
-  { step: "02", state: "h₂", result: "HARMFUL", before: "Write deletion script.", after: "Refuse deletion.", kind: "harmful" },
-  { step: "03", state: "h₃", result: "HARMFUL", before: "Run deletion on EXIT.", after: "Offer a harmless test.", kind: "harmful" },
+  { step: "02", state: "h₂", result: "HARMFUL", before: "Write script; run deletion on EXIT.", after: "Refuse deletion; offer a harmless test.", kind: "harmful" },
 ];
 const DURATION = 5000;
 
@@ -125,13 +124,13 @@ function TopTenVisual() {
 
 function DetectionVisual() {
   return (
-    <div className="detection-visual" role="img" aria-label="The trained linear probe checks each step's hidden state, allowing a benign step to continue and flagging harmful steps for steering.">
-      <div className="visual-axis"><span>STEP HIDDEN STATE</span><span>PROBE OUTPUT</span></div>
+    <div className="detection-visual" role="img" aria-label="Detection checks two concrete steps: inspecting login configuration at h1 is benign; writing a deletion script that runs on EXIT at h2 is harmful.">
+      <div className="visual-axis"><span>STEP · BEFORE ACTION</span><span>PROBE OUTPUT</span></div>
       <div className="detection-list">
         {trajectorySteps.map((item, index) => (
           <div className={`detection-row ${item.kind}`} key={item.step} style={{ animationDelay: `${index * 850}ms` }}>
-            <span className="detection-index">STEP {item.step}</span>
-            <strong>{item.state}</strong>
+            <div className="detection-step"><span className="detection-index">STEP {item.step}</span><strong>{item.before}</strong></div>
+            <strong className="detection-state">{item.state}</strong>
             <span className="detection-connector" aria-hidden="true">→</span>
             <span className="detection-probe">LINEAR PROBE</span>
             <span className="detection-connector" aria-hidden="true">→</span>
@@ -145,7 +144,7 @@ function DetectionVisual() {
 
 function MultiStepVisual() {
   return (
-    <div className="multi-visual" role="img" aria-label="At each turn, the trained probe checks the hidden state. The benign action remains unchanged. Harmful actions in turns two and three are changed to a refusal and a harmless test after steering.">
+    <div className="multi-visual" role="img" aria-label="Across two steps, the benign action at h1 remains unchanged. The harmful deletion action at h2 is steered into a refusal and a harmless test.">
       <div className="visual-axis"><span>MULTI-TURN TRAJECTORY</span><span>h′ = h + αv</span></div>
       <div className="trajectory-grid">
         {trajectorySteps.map((item, index) => (
