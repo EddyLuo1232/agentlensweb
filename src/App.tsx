@@ -8,6 +8,7 @@ const phases = [
   { label: "Select layer", title: "Find the hidden state", group: "MAS · PREPARATION" },
   { label: "Detect risk", title: "Detect harmful steps", group: "AGENTLENS DETECTION" },
   { label: "Select top 10", title: "Keep the top 10", group: "AGENTLENS MITIGATION" },
+  { label: "Tune α", title: "Tune steering strength", group: "AGENTLENS MITIGATION" },
   { label: "Multi-step steer", title: "Steer at each step", group: "AGENTLENS MITIGATION" },
 ];
 
@@ -121,6 +122,32 @@ function TopTenVisual() {
   );
 }
 
+function TuneVisual() {
+  return (
+    <div className="tune-visual" role="img" aria-label="The selected top ten dimensions stay fixed while AgentLens tests steering strengths alpha one and alpha two. An LLM judge checks safety and utility, then chooses alpha star for the harmful step.">
+      <div className="visual-axis"><span>TOP 10 DIMENSIONS · FIXED</span><span>ADAPTIVE α</span></div>
+      <div className="tune-layout">
+        <div className="tune-subspace">
+          <div className="tune-dimensions" aria-hidden="true">
+            {Array.from({ length: 10 }, (_, index) => <span className="tune-dimension" key={index}><i /></span>)}
+          </div>
+          <div className="tune-formula">h′ = h + αv</div>
+        </div>
+        <div className="tune-search">
+          <div className="tune-track-labels"><span>WEAKER</span><span>STRONGER</span></div>
+          <div className="tune-track"><span className="tune-knob" /></div>
+          <div className="tune-trials">
+            <div className="tune-trial first"><strong>α₁</strong><span>UNSAFE</span><b>↑ α</b></div>
+            <div className="tune-trial second"><strong>α₂</strong><span>LOW UTILITY</span><b>↓ α</b></div>
+            <div className="tune-trial chosen"><strong>α*</strong><span>SAFE + USEFUL</span><b>✓</b></div>
+          </div>
+          <div className="tune-judge">LLM JUDGE <span>SAFETY 0.6 · UTILITY 0.4</span></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function DetectionVisual() {
   return (
     <div className="detection-visual" role="img" aria-label="Detection checks two concrete steps: inspecting login configuration at h1 is benign; writing a deletion script that runs on EXIT at h2 is harmful.">
@@ -220,7 +247,8 @@ export default function Home() {
             {phase === 1 && <LayerVisual />}
             {phase === 2 && <DetectionVisual />}
             {phase === 3 && <TopTenVisual />}
-            {phase === 4 && <MultiStepVisual />}
+            {phase === 4 && <TuneVisual />}
+            {phase === 5 && <MultiStepVisual />}
           </div>
         </div>
 
