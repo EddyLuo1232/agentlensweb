@@ -55,7 +55,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .stage-group { color: #43855a; }
 .stage-title { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin: 14px 31px 0; min-height: 61px; animation: reveal .45s both; }
 .stage-title h3 { margin: 0; font-size: clamp(33px, 3.9vw, 52px); font-weight: 550; letter-spacing: -.07em; line-height: 1.06; }
-.stage-visual { min-height: 340px; margin: 26px 31px 0; border-top: 1px solid #e0e5df; animation: reveal .55s both; }
+.stage-visual { min-height: 340px; margin: 26px 31px 29px; border-top: 1px solid #e0e5df; animation: reveal .55s both; }
 .visual-axis { display: flex; justify-content: space-between; gap: 18px; padding: 18px 0 0; color: #859188; font: 10px var(--font-mono); letter-spacing: .08em; }
 .probe-visual, .transformer-visual, .detection-visual, .weight-visual, .multi-visual { max-width: 910px; margin: auto; }
 .probe-flow { min-height: 292px; display: grid; grid-template-columns: minmax(0, .9fr) 28px minmax(0, 1.1fr); align-items: center; gap: clamp(14px, 3vw, 30px); }
@@ -123,7 +123,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .weight-bracket span:first-child { border-top: 2px solid #4a9566; padding-top: 10px; color: #307447; }
 .weight-bracket span:last-child { border-top: 2px solid #d9e1d8; padding-top: 10px; color: #9aa69b; }
 .trajectory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; margin-top: 33px; }
-.trajectory-card { min-height: 224px; position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 17px; padding: 21px; border: 1px solid #d8e3d9; background: #f8fbf8; animation: trajectory-enter .55s both; }
+.trajectory-card { min-height: 278px; position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 15px; padding: 20px; border: 1px solid #d8e3d9; background: #f8fbf8; animation: trajectory-enter .55s both; }
 .trajectory-card.harmful { border-color: #e6d6d2; background: #fdf9f8; }
 .trajectory-card:not(:last-child):after { content: "→"; position: absolute; z-index: 2; top: 47%; right: -18px; color: #8da293; font: 22px var(--font-sans); }
 .trajectory-index { color: #7a8b7d; font: 600 10px var(--font-mono); letter-spacing: .07em; }
@@ -132,17 +132,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 .trajectory-probe { padding: 7px 9px; border: 1px solid #bbccbe; background: white; color: #54745c; font: 600 9px var(--font-mono); letter-spacing: .06em; }
 .trajectory-result { color: #36794d; font: 700 11px var(--font-mono); letter-spacing: .07em; }
 .trajectory-card.harmful .trajectory-result { color: #b76a61; }
-.trajectory-action { margin-top: auto; color: #347a4b; font: 700 11px var(--font-mono); letter-spacing: .04em; }
-.trajectory-card.harmful .trajectory-action { animation: action-glow .7s 1.1s both; }
-.stage-outcome { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); align-items: stretch; gap: 14px; margin: 18px 31px 29px; }
-.action-card { min-height: 91px; display: flex; flex-direction: column; justify-content: center; gap: 9px; padding: 18px 20px; border: 1px solid #e1e5df; background: #fff; }
-.action-card > span { color: #8c968c; font: 600 10px var(--font-mono); letter-spacing: .06em; }
-.action-card strong { color: #a45750; font-size: 16px; font-weight: 550; letter-spacing: -.025em; line-height: 1.3; }
-.action-after { border-color: #bed9c5; background: #f0f7f1; }
-.action-after > span { color: #478459; }
-.action-after strong { color: #2b7044; }
-.outcome-arrow { display: grid; place-items: center; color: #939e93; font: 22px var(--font-sans); }
-.motion-stage[data-phase="4"] .action-after { animation: action-arrive .7s .7s both; }
+.trajectory-actions { width: 100%; display: grid; gap: 7px; margin-top: auto; }
+.trajectory-action-row { min-height: 41px; display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: start; gap: 6px; padding: 8px 0 0; border-top: 1px solid #d8e5da; }
+.trajectory-action-row > span { color: #7a897d; font: 600 9px var(--font-mono); letter-spacing: .04em; }
+.trajectory-action-row strong { color: #354a3a; font-size: 12px; font-weight: 550; line-height: 1.3; }
+.trajectory-card.harmful .trajectory-action-row:first-child strong { color: #a85d55; }
+.trajectory-card.harmful .trajectory-action-row.after { border-color: #a9d6b3; animation: action-glow .7s 1.1s both; }
+.trajectory-card.harmful .trajectory-action-row.after strong { color: #2e7a49; }
 .player { display: flex; align-items: start; gap: 20px; padding-top: 18px; }
 .player-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; flex: 1; }
 .step { border: 0; background: none; text-align: left; padding: 0; color: #7c8880; cursor: pointer; }
@@ -169,7 +165,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
 @keyframes boundary-draw { to { stroke-dashoffset: 0; } }
 @keyframes trajectory-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes action-glow { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes action-arrive { from { box-shadow: inset 0 0 0 1px #39815a00; transform: translateX(-5px); } to { box-shadow: inset 0 0 0 1px #39815a70; transform: translateX(0); } }
 @keyframes progress { to { width: 100%; } }
 @media (max-width: 900px) {
   .wrap { width: min(100% - 56px, 1180px); }
@@ -193,7 +188,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .stage-top { padding: 18px 17px 0; font-size: 9px; }
   .stage-title { margin: 18px 17px 0; }
   .stage-title h3 { font-size: 36px; }
-  .stage-visual { min-height: 310px; margin: 18px 17px 0; }
+  .stage-visual { min-height: 310px; margin: 18px 17px 22px; }
   .visual-axis { font-size: 8px; }
   .transformer-visual { min-height: 300px; gap: 10px; justify-content: space-between; }
   .transformer-stack { width: 52%; flex: 0 0 52%; }
@@ -228,16 +223,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid #276548; outline-offs
   .probe-equation { font-size: 9px; }
   .probe-equation > span:last-child { font-size: 8px; gap: 5px; }
   .trajectory-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
-  .trajectory-card { min-height: 130px; gap: 9px; padding: 13px 16px; }
+  .trajectory-card { min-height: 202px; gap: 9px; padding: 13px 16px; }
   .trajectory-card:not(:last-child):after { content: "↓"; top: auto; right: 50%; bottom: -19px; transform: translateX(50%); font-size: 17px; }
   .trajectory-state strong { font-size: 24px; }
   .trajectory-probe { font-size: 8px; padding: 5px 7px; }
-  .trajectory-action, .trajectory-result { font-size: 9px; }
-  .stage-outcome { grid-template-columns: 1fr; gap: 5px; margin: 18px 17px 22px; }
-  .action-card { min-height: 75px; padding: 13px 15px; gap: 6px; }
-  .action-card > span { font-size: 9px; }
-  .action-card strong { font-size: 14px; }
-  .outcome-arrow { height: 24px; transform: rotate(90deg); font-size: 20px; }
+  .trajectory-result { font-size: 9px; }
+  .trajectory-action-row { min-height: 30px; grid-template-columns: 42px minmax(0, 1fr); padding-top: 6px; }
+  .trajectory-action-row strong { font-size: 11px; }
   .player { gap: 8px; }
   .player-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 5px; }
   .step-text { display: block; font-size: 10px; line-height: 1.4; }

@@ -47,9 +47,9 @@ const probePoints = [
   { x: 272, y: 112, kind: "harmful" }, { x: 303, y: 52, kind: "harmful" },
 ];
 const trajectorySteps = [
-  { step: "01", state: "h₁", result: "BENIGN", action: "CONTINUE", kind: "benign" },
-  { step: "02", state: "h₂", result: "HARMFUL", action: "SHIFT → SAFE ACTION", kind: "harmful" },
-  { step: "03", state: "h₃", result: "HARMFUL", action: "SHIFT → SAFE ACTION", kind: "harmful" },
+  { step: "01", state: "h₁", result: "BENIGN", before: "Inspect login config.", after: "Inspect login config.", kind: "benign" },
+  { step: "02", state: "h₂", result: "HARMFUL", before: "Write deletion script.", after: "Refuse deletion.", kind: "harmful" },
+  { step: "03", state: "h₃", result: "HARMFUL", before: "Run deletion on EXIT.", after: "Offer a harmless test.", kind: "harmful" },
 ];
 const DURATION = 5000;
 
@@ -145,15 +145,18 @@ function DetectionVisual() {
 
 function MultiStepVisual() {
   return (
-    <div className="multi-visual" role="img" aria-label="At each turn, the trained probe checks the hidden state. A benign step continues; harmful steps in turns two and three each receive a hidden-state shift before a safer action.">
+    <div className="multi-visual" role="img" aria-label="At each turn, the trained probe checks the hidden state. The benign action remains unchanged. Harmful actions in turns two and three are changed to a refusal and a harmless test after steering.">
       <div className="visual-axis"><span>MULTI-TURN TRAJECTORY</span><span>h′ = h + αv</span></div>
       <div className="trajectory-grid">
         {trajectorySteps.map((item, index) => (
           <div className={`trajectory-card ${item.kind}`} key={item.step} style={{ animationDelay: `${index * 950}ms` }}>
             <span className="trajectory-index">STEP {item.step}</span>
             <div className="trajectory-state"><strong>{item.state}</strong><span>→</span><span className="trajectory-probe">PROBE</span></div>
-            <span className="trajectory-result">{item.result}</span>
-            <span className="trajectory-action">{item.action}</span>
+            <span className="trajectory-result">{item.result} · {item.kind === "benign" ? "PASS" : "SHIFT"}</span>
+            <div className="trajectory-actions">
+              <div className="trajectory-action-row"><span>BEFORE</span><strong>{item.before}</strong></div>
+              <div className="trajectory-action-row after"><span>AFTER</span><strong>{item.after}</strong></div>
+            </div>
           </div>
         ))}
       </div>
@@ -220,11 +223,6 @@ export default function Home() {
             {phase === 2 && <DetectionVisual />}
             {phase === 3 && <TopTenVisual />}
             {phase === 4 && <MultiStepVisual />}
-          </div>
-          <div className="stage-outcome" aria-label="Actions before and after steering">
-            <div className="action-card action-before"><span>BEFORE · ACTION</span><strong>Write script; run deletion on EXIT.</strong></div>
-            <span className="outcome-arrow" aria-hidden="true">→</span>
-            <div className="action-card action-after"><span>AFTER · ACTION</span><strong>Refuse deletion; offer a harmless test.</strong></div>
           </div>
         </div>
 
